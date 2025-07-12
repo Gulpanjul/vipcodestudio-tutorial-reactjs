@@ -1,13 +1,12 @@
 interface ButtonProps {
-  variant?: string;
+  classname?: string;
   children?: React.ReactNode;
 }
 
-const Button = (props: ButtonProps) => {
-  const { children, variant = "bg-black" } = props;
+const Button = ({ children, classname = "bg-black" }: ButtonProps) => {
   return (
     <button
-      className={`h-10 px-6 font-semibold rounded-md ${variant} text-white`}
+      className={`h-10 px-6 font-semibold rounded-md ${classname} text-white`}
       type="submit"
     >
       {children}
