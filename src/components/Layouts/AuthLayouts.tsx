@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
+
 interface AuthLayoutProps {
   children: React.ReactNode;
   title: string;
+  type: string;
 }
 
-const AuthLayout = ({ children, title }: AuthLayoutProps) => {
+const AuthLayout = ({ children, title, type }: AuthLayoutProps) => {
   return (
     <div className="flex justify-center min-h-screen items-center">
       <div className="w-full max-w-xs">
@@ -12,9 +15,32 @@ const AuthLayout = ({ children, title }: AuthLayoutProps) => {
           Welcome, Please enter your details
         </p>
         {children}
+        <Navigation type={type} />
       </div>
     </div>
   );
+};
+
+const Navigation = ({ type }: { type: string }) => {
+  if (type === "login") {
+    return (
+      <p className="text-sm mt-5 text-center">
+        Don't have an account?{" "}
+        <Link to="/register" className="font-bold text-blue-600">
+          Register
+        </Link>
+      </p>
+    );
+  } else {
+    return (
+      <p className="text-sm mt-5 text-center">
+        Already have an account?{" "}
+        <Link to="/login" className="font-bold text-blue-600">
+          Login
+        </Link>
+      </p>
+    );
+  }
 };
 
 export default AuthLayout;
