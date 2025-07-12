@@ -1,19 +1,4 @@
-interface ButtonProps {
-  variant?: string;
-  children?: React.ReactNode;
-}
-
-const Button = (props: ButtonProps) => {
-  const { children, variant = "bg-black" } = props;
-  return (
-    <button
-      className={`h-10 px-6 font-semibold rounded-md ${variant}`}
-      type="submit"
-    >
-      {children}
-    </button>
-  );
-};
+import Button from "./components/Elements/Button";
 
 function App() {
   return (
