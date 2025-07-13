@@ -1,26 +1,42 @@
 import CardProduct from "../components/Fragments/CardProduct";
 
+const products = [
+  {
+    id: 1,
+    title: "Sepatu baru",
+    price: "Rp. 1.000.000",
+    image: "/images/fashion-shoes-sneakers.jpg",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil possimus nemo blanditiis omnis odio itaque nam id ipsum! Qui et quibusdam, saepe nam nobis perspiciatis sint repellat ut dolores in.",
+  },
+  {
+    id: 2,
+    title: "Sepatu lama",
+    price: "Rp. 500.000",
+    image: "/images/fashion-shoes-sneakers.jpg",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+  {
+    id: 3,
+    title: "Sepatu adadong",
+    price: "Rp. 2.000.000",
+    image: "/images/fashion-shoes-sneakers.jpg",
+    description: "Ini adalah sepatu dari brand adadong",
+  },
+];
+
 const ProductPage = () => {
   return (
     <div className="flex justify-center py-5">
-      <CardProduct>
-        <CardProduct.Header images="/images/fashion-shoes-sneakers.jpg"/>
-        <CardProduct.Body title="Sepatu baru">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-          possimus nemo blanditiis omnis odio itaque nam id ipsum! Qui et
-          quibusdam, saepe nam nobis perspiciatis sint repellat ut dolores in.
-        </CardProduct.Body>
-        <CardProduct.Footer price="Rp. 1.000.000"/>
-      </CardProduct>
-      <CardProduct>
-        <CardProduct.Header images="/images/fashion-shoes-sneakers.jpg"/>
-        <CardProduct.Body title="Sepatu baru">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-          possimus nemo blanditiis omnis odio itaque nam id ipsum! Qui et
-          quibusdam, saepe nam nobis perspiciatis sint repellat ut dolores in.
-        </CardProduct.Body>
-        <CardProduct.Footer price="Rp. 1.000.000"/>
-      </CardProduct>
+      {products.map((product) => (
+        <CardProduct key={product.id}>
+          <CardProduct.Header image={product.image} />
+          <CardProduct.Body title={product.title}>
+            {product.description}
+          </CardProduct.Body>
+          <CardProduct.Footer price={product.price} />
+        </CardProduct>
+      ))}
     </div>
   );
 };
