@@ -14,15 +14,7 @@ const FormLogin = () => {
       (event.currentTarget.elements.namedItem("password") as HTMLInputElement)
         .value
     );
-    console.log(
-      (event.currentTarget.elements.namedItem("email") as HTMLInputElement)
-        .value
-    );
-    console.log(
-      (event.currentTarget.elements.namedItem("password") as HTMLInputElement)
-        .value
-    );
-    console.log("login");
+    window.location.href = "/products";
   };
   return (
     <form onSubmit={handleLogin}>
