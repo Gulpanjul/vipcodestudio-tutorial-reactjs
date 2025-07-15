@@ -1,10 +1,13 @@
+import { forwardRef } from "react";
+
 interface InputProps {
   type: string;
   placeholder: string;
   name: string;
 }
 
-const Input = ({ type, placeholder, name }: InputProps) => {
+const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
+  const { type, placeholder, name } = props;
   return (
     <input
       type={type}
@@ -12,8 +15,9 @@ const Input = ({ type, placeholder, name }: InputProps) => {
       placeholder={placeholder}
       name={name}
       id={name}
+      ref={ref}
     />
   );
-};
+});
 
 export default Input;
