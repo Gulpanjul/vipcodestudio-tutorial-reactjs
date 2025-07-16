@@ -2,10 +2,8 @@ import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { getProducts } from "../services/product.service";
+import { getUsername } from "../services/auth.service";
 // import Counter from "../components/Fragments/Counter";
-
-const email = localStorage.getItem("email");
-
 interface CartItem {
   id: number;
   qty: number;
@@ -23,9 +21,19 @@ const ProductPage = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState<Product[]>([]);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart") || "[]"));
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUsername(getUsername(token));
+    } else {
+      window.location.href = "/login";
+    }
   }, []);
 
   useEffect(() => {
@@ -47,8 +55,7 @@ const ProductPage = () => {
   }, [cart, products]);
 
   const handleLogout = () => {
-    localStorage.removeItem("email");
-    localStorage.removeItem("password");
+    localStorage.removeItem("token");
     window.location.href = "/login";
   };
 
@@ -65,14 +72,14 @@ const ProductPage = () => {
   };
 
   //useRef
-  const cartRef = useRef(
-    JSON.parse(localStorage.getItem("cart") || "[]") || []
-  );
+  // const cartRef = useRef(
+  //   JSON.parse(localStorage.getItem("cart") || "[]") || []
+  // );
 
-  const handleAddToCartRef = (id: number) => {
-    cartRef.current = [...cartRef.current, { id, qty: 1 }];
-    localStorage.setItem("cart", JSON.stringify(cartRef.current));
-  };
+  // const handleAddToCartRef = (id: number) => {
+  //   cartRef.current = [...cartRef.current, { id, qty: 1 }];
+  //   localStorage.setItem("cart", JSON.stringify(cartRef.current));
+  // };
 
   const totalPriceRef = useRef<HTMLTableRowElement>(null);
 
@@ -86,7 +93,7 @@ const ProductPage = () => {
   return (
     <Fragment>
       <div className="flex justify-end h-20 bg-blue-600 text-white items-center px-10">
-        {email}
+        {username}
         <Button classname="ml-5 bg-black" onClick={handleLogout}>
           Logout
         </Button>
