@@ -9,6 +9,7 @@ import RegisterPage from "./pages/register.tsx";
 import ErrorPage from "./pages/404.tsx";
 import ProductPage from "./pages/products.tsx";
 import ProfilePage from "./pages/profile.tsx";
+import DetailProductPage from "./pages/detailProduct.tsx";
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <ProfilePage />
-  }
+    element: <ProfilePage />,
+  },
+  {
+    path: "/product/:id",
+    element: <DetailProductPage />,
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(
